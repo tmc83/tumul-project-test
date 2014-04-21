@@ -1,0 +1,84 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>
+
+<html>
+  <head>
+    <title>Sign Up</title>
+    <style type="text/css">
+      .label {text-align: right}
+      .error {color: red}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div>
+  <div align="center">
+  
+    <p>SIGN UP</p>
+<br>
+    <form method="post" target="_blank" >
+      <table>
+        <tr>
+          <td>
+            Username
+          </td>
+          <td>
+            <input type="text" name="username" value="{{name}}">
+          </td>
+          <td class="error">
+            {{usererror}}
+          </td>
+        </tr><td><br>
+
+     <tr>
+          <td>
+            Password
+          </td>
+          <td>
+            <input type="password" name="password" value="{{password}}">
+          </td>
+          <td class="error">
+            {{passworderror}}
+          </td>
+        </tr><td><br>
+
+       <tr>
+          <td>
+            Verify Password
+          </td>
+          <td>
+            <input type="password" name="verify" value="{{verify}}">
+          </td>
+          <td class="error">            
+          {{verifyerror}}
+          </td>
+        </tr><td><br>
+
+        <tr>
+          <td>
+            Email (optional)
+          </td>
+          <td>
+            <input type="text" name="email" value="{{email}}">
+          </td>
+          <td class="error">
+            {{emailerror}}
+          </td>
+        </tr>
+      </td></td></td></table><br>
+
+      <input type="submit">
+    </form></div>
+  </div>
+
+</body></html>
+
+
+
+  
+    
+    
+
+ 
