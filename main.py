@@ -10,6 +10,9 @@ import logging
 import datetime
 import time
 import urllib2
+import HTMLParser
+
+
 
 USER_RE = re.compile("^[a-zA-Z0-9_-]{3,20}$")
 PASSWORD_RE = re.compile("^.{3,20}$")
@@ -129,34 +132,111 @@ def return_primary_results(search_json):
 
 
     if not search_json["RelatedTopics"] == [] :
-        JSON_APPEND = "&format=json"
+        #JSON_APPEND = "&format=json"
         primary_results["related_topics_list"] = search_json["RelatedTopics"]
         for e in primary_results["related_topics_list"] :
             if "Result" in e.keys() :
                 #logging.error(e['FirstURL'])
-                heading = json.loads(urllib2.urlopen(e['FirstURL']+JSON_APPEND).read())["Heading"]
+                #heading = json.loads(urllib2.urlopen(e['FirstURL']+JSON_APPEND).read())["Heading"]
                 #logging.error(heading)
-                #heading = e["Text"]
-                #if e["Text"].find(' or') :
-                 #   heading = e["Text"][:e["Text"].find(' or')]
+                heading = e["Text"]
 
-                #if e["Text"].find(',') :
-                 #   heading = e["Text"][:e["Text"].find(',')]
+                if not heading.find(' or') == -1 :
+                    heading = heading[:e["Text"].find(' or')]
 
-                ##
+                logging.error(heading)
+                    
+                if not heading.find(',') == -1 :
+                    heading = heading[:e["Text"].find(',')]   
 
+                if not heading.find(' - ') == -1 :
+                    heading = heading[:e["Text"].find(' - ')]                                 
 
+                logging.error(heading)
                 e["FirstURL"] = heading
 
 
     return primary_results
 
-#def return_news_results(search_string) :
- #   url = urllib2.urlopen("https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=%s"%search_string).read()
-  #  news_json = json.loads(url)
-   # logging.error(news_json)
-    #for e in news_json["responseData"]["results"] :
-     #   news_results["title"]
+def return_news_results(search_string, user_ip) :
+    html_parser = HTMLParser.HTMLParser()
+    search_string =  search_string.replace(' ','%20')
+    logging.error(search_string)
+    url = urllib2.urlopen("https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=%s&userip=%s"%(search_string,user_ip)).read()
+    news_json = json.loads(url)
+    logging.error(news_json)
+    news_results = []    
+    for e in news_json["responseData"]["results"] :
+        news_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : e["unescapedUrl"], "publisher":e["publisher"]})
+       
+    logging.error(news_results)    
+    more_news_results = []
+    for e in news_json["responseData"]["results"] :
+        if "relatedStories" in e.keys() :
+            for i in e["relatedStories"] :
+                more_news_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : e["unescapedUrl"] })        
+    return {"news_results" : news_results , "more_news_results" : more_news_results}  
+
+def return_top_results(search_string, user_ip) :
+    html_parser = HTMLParser.HTMLParser()
+    search_string =  search_string.replace(' ','%20')
+    logging.error(search_string)
+    url = urllib2.urlopen("https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s&userip=%s"%(search_string,user_ip)).read()
+    top_json = json.loads(url)
+    logging.error(top_json)
+    top_results = []    
+    for e in top_json["responseData"]["results"] :
+        top_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : e["unescapedUrl"] })
+       
+    logging.error(top_results)    
+    return {"top_results" : top_results}         
+
+
+def return_web_results(search_string, user_ip) :
+    html_parser = HTMLParser.HTMLParser()
+    search_string =  search_string.replace(' ','%20')
+    logging.error(search_string)
+    url = urllib2.urlopen("http://188.40.64.7:8092/yacysearch.json?query=%s"%(search_string)).read()
+   # json_response = unirest.get("https://faroo-faroo-web-search.p.mashape.com/api?q=lobo",
+  
+ # headers={
+   # "X-Mashape-Authorization": "ArSWXeNxgohO7uPTFIGzNO79TNjPyYNW"
+  #}
+#);
+    web_json = json.loads(url)
+ #   logging.error(json_response)
+    web_results = []    
+    for e in web_json["channels"][0]["items"] :
+        web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
+       
+    #logging.error(web_results)    
+    return {"web_results" : web_results}    
+
+def return_image_results(search_string,user_ip) :
+    html_parser = HTMLParser.HTMLParser()
+    search_string =  search_string.replace(' ','%20')
+    logging.error(search_string)
+    url = urllib2.urlopen("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s&userip=%s"%(search_string,user_ip)).read()
+    image_json = json.loads(url)
+    #logging.error(image_json)
+    image_results = []    
+    for e in image_json["responseData"]["results"] :
+        image_results.append({"title":html_parser.unescape(e["content"]) ,"url" : e["unescapedUrl"] })
+       
+    #logging.error(image_results)    
+    return {"image_results" : image_results}      
+
+
+def return_thored_results(search_string, user_ip) :
+    search_string =  search_string.replace(' ','%20')
+    url = urllib2.urlopen("http://suggestqueries.google.com/complete/search?client=firefox&q=%s"%(search_string)).read()
+    thored_json = json.loads(url)
+    thored_results = []
+    for e in thored_json[1] :
+        thored_results.append({"result" : e})
+    return {"thored_results" : thored_results}    
+
+    
 
 class Post(db.Model):
     subject = db.StringProperty(required = True)
@@ -360,10 +440,11 @@ class SearchHandler(webapp2.RequestHandler) :
         search_string = self.request.get('search_string')
         logging.error(search_string)
         template_values={"tr_show_value" : 'hidden' , "sr_show_value" : 'hidden' , "mr_show_value" : 'hidden'}
-        self.response.out.write(ret_template('search.html').render(template_values))
+        self.response.out.write(ret_template('test.html').render(template_values))
 
     def post(self):
-        search_string = self.request.get('search_string')         
+        search_string = self.request.get('search_string')       
+        user_ip = self.request.remote_addr 
         if search_string == "" :
             template_values={'search_string':search_string , "tr_show_value" : 'hidden' , 
                              "mr_show_value" : 'hidden' ,
@@ -375,11 +456,22 @@ class SearchHandler(webapp2.RequestHandler) :
             search_json = json.loads(url_content)
             logging.error(search_json)
             primary_results = return_primary_results(search_json)
-            #news_results = return_news_results(search_string)
-            template_values = dict(template_values.items() + primary_results.items())
+            news_results = return_news_results(search_string , user_ip)
+            top_results = return_top_results(search_string , user_ip)
+            web_results = return_web_results(search_string , user_ip)
+            image_results = return_image_results(search_string , user_ip)
+            thored_results = return_thored_results(search_string , user_ip)
+            template_values = dict(template_values.items() + 
+                                   primary_results.items() + 
+                                   news_results.items() +
+                                   top_results.items() +
+                                   web_results.items()  +
+                                   image_results.items() +
+                                   thored_results.items()
+                                   )
 
         template_values['search_string'] = search_string
-        self.response.out.write(ret_template('search.html').render(template_values)) 
+        self.response.out.write(ret_template('search.html').render(template_values))  
 
 class ShareHandler(webapp2.RequestHandler) :
     def get(self) :
@@ -396,7 +488,8 @@ class TestHandler(webapp2.RequestHandler):
         self.response.out.write(ret_template('test.html').render(template_values))
 
     def post(self):
-        search_string = self.request.get('search_string')         
+        search_string = self.request.get('search_string')       
+        user_ip = self.request.remote_addr 
         if search_string == "" :
             template_values={'search_string':search_string , "tr_show_value" : 'hidden' , 
                              "mr_show_value" : 'hidden' ,
@@ -408,8 +501,19 @@ class TestHandler(webapp2.RequestHandler):
             search_json = json.loads(url_content)
             logging.error(search_json)
             primary_results = return_primary_results(search_json)
-            #news_results = return_news_results(search_string)
-            template_values = dict(template_values.items() + primary_results.items())
+            news_results = return_news_results(search_string , user_ip)
+            top_results = return_top_results(search_string , user_ip)
+            web_results = return_web_results(search_string , user_ip)
+            image_results = return_image_results(search_string , user_ip)
+            thored_results = return_thored_results(search_string , user_ip)
+            template_values = dict(template_values.items() + 
+                                   primary_results.items() + 
+                                   news_results.items() +
+                                   top_results.items() +
+                                   web_results.items()  +
+                                   image_results.items() +
+                                   thored_results.items()
+                                   )
 
         template_values['search_string'] = search_string
         self.response.out.write(ret_template('test.html').render(template_values))            

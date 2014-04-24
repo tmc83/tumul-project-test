@@ -202,7 +202,7 @@
                       </p>
                       <p>
                         <form method="post">
-                            <button type="submit" name="search_string" value="{{related_topic["FirstURL"]}}" class="btn btn-link" id="modal-search-button" data-loading-text="Searching" >{{related_topic["FirstURL"]}}</button>
+                            <button type="submit" name="search_string" value="{{related_topic["FirstURL"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" >{{related_topic["FirstURL"]}}</button>
                           </form>
                       </p>                
                     </div>
@@ -241,7 +241,94 @@
             <div class="col-sm-3" >
               <div class="well">
                 <h3 class="text-center">
+                Top Results
+                </h3>
+                <hr/>
+                <h5 class="text-center">
+                  {% for result in top_results %}
+                  
+                    <div>
+                      <p>
+                        {{result["title"]}}
+                      </p>
+                      <p>
+                        <a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>  
+                      </p>                
+                    </div>
+                    <hr/>
+
+
+                    {% endfor %}
+                <h5>
+              </div>
+            </div>  
+          </article>
+  
+          <article>
+            <div class="col-sm-3" >
+              <div class="well">
+                <h3 class="text-center">
+                News Results
+                <hr/>
+                <h5 class="text-center">
+                  {% for result in news_results %}
+                  
+                    <div>
+                      <p>
+                        {{result["title"]}}
+                      </p>
+                      <p>
+                        <a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>  
+                      </p>                
+                    </div>
+                    <hr/>
+
+
+                    {% endfor %}
+                <h5>
+          <!--    <hr/>
+                <h5 class="text-center">
+                  {% for result in more_news_results %}
+                  
+                    <div>
+                      <p>
+                        {{result["title"]}}
+                      </p>
+                      <p>
+                        <a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>  
+                      </p>                
+                    </div>
+                    <hr/>
+
+
+                    {% endfor %}
+                <h5>  -->
+                </h3>
+              </div>
+            </div>  
+          </article>
+          <article>
+            <div class="col-sm-3" >
+              <div class="well">
+                <h3 class="text-center">
                 Web Results
+                <hr/>
+                <h5 class="text-center">
+                  {% for result in web_results %}
+                  
+                    <div>
+                      <p>
+                        {{result["title"]}}
+                      </p>
+                      <p>
+                        <a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>  
+                      </p>                
+                    </div>
+                    <hr/>
+
+
+                    {% endfor %}
+                <h5>                
                 </h3>
               </div>
             </div>      
@@ -250,25 +337,21 @@
             <div class="col-sm-3" >
               <div class="well">
                 <h3 class="text-center">
-                News Results
-                </h3>
-              </div>
-            </div>  
-          </article>
-          <article>
-            <div class="col-sm-3" >
-              <div class="well">
-                <h3 class="text-center">
-                Top Results
-                </h3>
-              </div>
-            </div>  
-          </article>
-          <article>
-            <div class="col-sm-3" >
-              <div class="well">
-                <h3 class="text-center">
-                Th0REd Results
+                Th0Red Results
+                <hr/>
+              <div>
+                {% for result in thored_results %}  
+                    <div>
+                      <p>
+                        <form method="post">
+                            <button type="submit" name="search_string" value="{{result["result"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" >{{result["result"]}}</button>
+                          </form>
+                      </p>                
+                    </div>
+
+
+                   {% endfor %}
+              </div>                  
                 </h3>
               </div>
             </div>  
@@ -278,8 +361,21 @@
       <div class="container-fluid"  {{mr_show_value}}>
         <div class="well">
           <article>
-          <h2>
+          <h2 class="text-center">
             Media Results
+          <hr/>
+          <div class="row"> 
+          {% for result in image_results %}
+                      
+              
+                <img src="{{result["url"]}}" alt="" class="img-responsive center-block" > 
+                              
+            
+            
+
+
+            {% endfor %}            
+          </div>
           </h2> 
         </article>
         </div>
@@ -303,7 +399,7 @@ $("#search-button").click(function() {
 });
     </script>
   <script type="text/javascript">
-$("#modal-search-button").click(function() {
+$("modal-search-button").click(function() {
     var $btn = $(this);
     $btn.button('loading');
     // simulating a timeout
