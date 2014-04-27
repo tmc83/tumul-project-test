@@ -202,7 +202,7 @@
 											</p>
 											<p>
 												<form method="post">
-												    <button type="submit" name="search_string" value="{{related_topic["FirstURL"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" >{{related_topic["FirstURL"]}}</button>
+												    <button type="submit" name="search_string" value="{{related_topic["FirstURL"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" class="ccomment-text">{{related_topic["FirstURL"]}}</button>
 											    </form>
 											</p>								
 										</div>
@@ -229,7 +229,7 @@
 		</div>
 		
 	</section>
-	
+	<hr/ {{tr_show_value}}>
 	<section>
 		<div >
 			<div class="container-fluid" {{sr_show_value}}>
@@ -238,7 +238,7 @@
 				</h2>  -->
 				<div class="row">
 					<article>
-						<div class="col-sm-3" >
+						<div class="col-sm-6" >
 							<div class="well">
 								<h3 class="text-center">
 								Top Results
@@ -248,7 +248,7 @@
 									{% for result in top_results %}
 									
 										<div>
-											<p>
+											<p class="comment-text">
 												{{result["title"]}}
 											</p>
 											<p>
@@ -265,7 +265,7 @@
 					</article>
 	
 					<article>
-						<div class="col-sm-3" >
+						<div class="col-sm-6" >
 							<div class="well">
 								<h3 class="text-center">
 								News Results
@@ -274,7 +274,7 @@
 									{% for result in news_results %}
 									
 										<div>
-											<p>
+											<p class="comment-text">
 												{{result["title"]}}
 											</p>
 											<p>
@@ -286,8 +286,45 @@
 
 							   	 	{% endfor %}
 								<h5>
-					<!--		<hr/>
-								<h5 class="text-center">
+<div class="text-center">
+
+    <a data-toggle="modal" href="#myNewsModal" class="btn btn-success center">Related Links <span class="glyphicon glyphicon-link"></span></a>		
+    <div class="modal fade" id="myNewsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 class="modal-title"><p class="text-primary"><lead>Related Links</lead><p></h2>
+        </div>
+        <div class="modal-body">  
+		<h5>
+			<div>
+				{% for result in more_news_results %}
+					<hr/>
+						<div>
+							<p>
+								{{result["title"]}}
+							</p>
+							<p>
+								<a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>
+							</p>								
+						</div>
+
+
+			   	 {% endfor %}
+			</div>	
+		</h5>
+	    </div>
+    	<div class="modal-footer">
+      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>      
+    	</div>
+  	</div>
+	</div>
+	</div>
+	  				
+
+</div>							
+			<!--					<h5 class="text-center">
 									{% for result in more_news_results %}
 									
 										<div>
@@ -308,7 +345,7 @@
 						</div>	
 					</article>
 					<article>
-						<div class="col-sm-3" >
+						<div class="col-sm-6" >
 							<div class="well">
 								<h3 class="text-center">
 								Web Results
@@ -317,7 +354,7 @@
 									{% for result in web_results %}
 									
 										<div>
-											<p>
+											<p class="comment-text">
 												{{result["title"]}}
 											</p>
 											<p>
@@ -328,13 +365,51 @@
 
 
 							   	 	{% endfor %}
-								<h5>								
+								<h5>
+<div class="text-center">
+
+    <a data-toggle="modal" href="#myWebModal" class="btn btn-success center">Related Links <span class="glyphicon glyphicon-link"></span></a>		
+    <div class="modal fade" id="myWebModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 class="modal-title"><p class="text-primary"><lead>Related Links</lead><p></h2>
+        </div>
+        <div class="modal-body">  
+		<h5>
+			<div>
+				{% for result in more_web_results %}
+					<hr/>
+						<div>
+							<p>
+								{{result["title"]}}
+							</p>
+							<p>
+								<a href="{{result["url"]}}" class="comment-text">{{result["url"]}}</a>
+							</p>								
+						</div>
+
+
+			   	 {% endfor %}
+			</div>	
+		</h5>
+	    </div>
+    	<div class="modal-footer">
+      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>      
+    	</div>
+  	</div>
+	</div>
+	</div>
+	  				
+
+</div>																
 								</h3>
 							</div>
 						</div>			
 					</article>
 					<article>
-						<div class="col-sm-3" >
+						<div class="col-sm-6" >
 							<div class="well">
 								<h3 class="text-center">
 								Th0Red Results
@@ -344,7 +419,7 @@
 										<div>
 											<p>
 												<form method="post">
-												    <button type="submit" name="search_string" value="{{result["result"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" >{{result["result"]}}</button>
+												    <button type="submit" name="search_string" value="{{result["result"]}}" class="btn btn-link" class="modal-search-button" data-loading-text="Searching" class="comment-text">{{result["result"]}}</button>
 											    </form>
 											</p>								
 										</div>
@@ -358,24 +433,39 @@
 					</article>
 				</div>
 			</div>
+			<hr/ {{tr_show_value}}>
 			<div class="container-fluid"  {{mr_show_value}}>
 				<div class="well">
 					<article>
 					<h2 class="text-center">
 						Media Results
 					<hr/>
+
+					<div class="row">	
+					{% for result in video_results %}
+											
+							
+							<!--	<img src="{{result["url"]}}" alt="" class="img-responsive center-block" >	-->	
+						<div>
+							<iframe width="640" height="360" src="{{result["url"]}}" frameborder="0" allowfullscreen></iframe>
+						</div>
+					
+						<hr/>
+										
+			   	 	{% endfor %}	
+					</div>					
+					<hr/>
 					<div class="row">	
 					{% for result in image_results %}
 											
-							
+								<hr/>
 								<img src="{{result["url"]}}" alt="" class="img-responsive center-block" >	
-															
-						
-						
 
-
-			   	 	{% endfor %}	 					
+								
+										
+			   	 	{% endfor %}	
 					</div>
+
 					</h2>	
 				</article>
 				</div>
@@ -395,7 +485,7 @@ $("#search-button").click(function() {
     // simulating a timeout
     setTimeout(function () {
         $btn.button('reset');
-    }, 10000);
+    }, 60000);
 });
     </script>
  	<script type="text/javascript">
@@ -405,7 +495,7 @@ $("modal-search-button").click(function() {
     // simulating a timeout
     setTimeout(function () {
         $btn.button('reset');
-    }, 10000);
+    }, 60000);
 });
     </script>   
     <script type="text/javascript">

@@ -90,6 +90,7 @@ def ret_template(template):
     return jinja_environment.get_template(template)
 
 def return_primary_results(search_json):
+
     primary_results = {}
     if not search_json["Definition"] == "" : 
         if not search_json["Definition"].find("definition:") == -1 :
@@ -132,25 +133,25 @@ def return_primary_results(search_json):
 
 
     if not search_json["RelatedTopics"] == [] :
-        #JSON_APPEND = "&format=json"
+        JSON_APPEND = "&format=json"
         primary_results["related_topics_list"] = search_json["RelatedTopics"]
         for e in primary_results["related_topics_list"] :
             if "Result" in e.keys() :
                 #logging.error(e['FirstURL'])
-                #heading = json.loads(urllib2.urlopen(e['FirstURL']+JSON_APPEND).read())["Heading"]
+                heading = json.loads(urllib2.urlopen(e['FirstURL']+JSON_APPEND).read())["Heading"]
                 #logging.error(heading)
-                heading = e["Text"]
+               # heading = e["Text"]
 
-                if not heading.find(' or') == -1 :
-                    heading = heading[:e["Text"].find(' or')]
+                #if not heading.find(' or') == -1 :
+                 #   heading = heading[:e["Text"].find(' or')]
 
-                logging.error(heading)
+                #logging.error(heading)
                     
-                if not heading.find(',') == -1 :
-                    heading = heading[:e["Text"].find(',')]   
+                #if not heading.find(',') == -1 :
+                 #   heading = heading[:e["Text"].find(',')]   
 
-                if not heading.find(' - ') == -1 :
-                    heading = heading[:e["Text"].find(' - ')]                                 
+                #if not heading.find(' - ') == -1 :
+                 #   heading = heading[:e["Text"].find(' - ')]                                 
 
                 logging.error(heading)
                 e["FirstURL"] = heading
@@ -174,7 +175,16 @@ def return_news_results(search_string, user_ip) :
     for e in news_json["responseData"]["results"] :
         if "relatedStories" in e.keys() :
             for i in e["relatedStories"] :
-                more_news_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : e["unescapedUrl"] })        
+                more_news_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : e["unescapedUrl"] })    
+
+
+    key = "&key=RiMKJK3gq2FTBWxx41B76MR2OHc_"
+    url = urllib2.urlopen("http://www.faroo.com/api?q=%s&start=1&length=10&l=en&src=news&i=true&f=json%s"%(search_string,key)).read()
+    news_json = json.loads(url)
+ #   logging.error(json_response)    
+    for e in news_json["results"] :
+        more_news_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["url"] })
+    
     return {"news_results" : news_results , "more_news_results" : more_news_results}  
 
 def return_top_results(search_string, user_ip) :
@@ -196,6 +206,27 @@ def return_web_results(search_string, user_ip) :
     html_parser = HTMLParser.HTMLParser()
     search_string =  search_string.replace(' ','%20')
     logging.error(search_string)
+ #   logging.error(json_response)
+    web_results = []  
+    more_web_results = []  
+    key = "&key=RiMKJK3gq2FTBWxx41B76MR2OHc_"
+    url = urllib2.urlopen("http://www.faroo.com/api?q=%s&start=1&length=10&l=en&src=web&i=true&f=json%s"%(search_string,key)).read()
+   # json_response = unirest.get("https://faroo-faroo-web-search.p.mashape.com/api?q=lobo",
+  
+ # headers={
+   # "X-Mashape-Authorization": "ArSWXeNxgohO7uPTFIGzNO79TNjPyYNW"
+  #}
+#);
+    web_json = json.loads(url)
+ #   logging.error(json_response)    
+    for e in web_json["results"] :
+        if len(web_results) < 4 :        
+            web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["url"] })
+
+        else :
+            more_web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["url"] })
+
+
     url = urllib2.urlopen("http://188.40.64.7:8092/yacysearch.json?query=%s"%(search_string)).read()
    # json_response = unirest.get("https://faroo-faroo-web-search.p.mashape.com/api?q=lobo",
   
@@ -204,13 +235,18 @@ def return_web_results(search_string, user_ip) :
   #}
 #);
     web_json = json.loads(url)
- #   logging.error(json_response)
-    web_results = []    
+
     for e in web_json["channels"][0]["items"] :
-        web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
-       
-    #logging.error(web_results)    
-    return {"web_results" : web_results}    
+        if len(web_results) < 4 :       
+            web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
+        
+        else :
+            more_web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
+
+    #logging.error(web_results)   
+
+     
+    return {"web_results" : web_results, "more_web_results" : more_web_results}    
 
 def return_image_results(search_string,user_ip) :
     html_parser = HTMLParser.HTMLParser()
@@ -234,7 +270,22 @@ def return_thored_results(search_string, user_ip) :
     thored_results = []
     for e in thored_json[1] :
         thored_results.append({"result" : e})
-    return {"thored_results" : thored_results}    
+    return {"thored_results" : thored_results}   
+
+def return_video_resutls(search_string , user_ip) :
+    html_parser = HTMLParser.HTMLParser()
+    search_string =  search_string.replace(' ','%20')
+    logging.error(search_string)
+    url = urllib2.urlopen("https://ajax.googleapis.com/ajax/services/search/video?v=1.0&q=%s&userip=%s"%(search_string,user_ip)).read()
+    video_json = json.loads(url)
+    #logging.error(image_json)
+    video_results = [] 
+    for e in video_json["responseData"]["results"] :
+        video_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : "//www.youtube.com/embed/"+re.findall( r'v\=([\-\w]+)', e["url"] )[0] })
+        logging.error(e["url"])       
+        logging.error( "//www.youtube.com/embed/"+re.findall( r'v\=([\-\w]+)', e["url"] )[0])  
+
+    return {"video_results" : video_results}     
 
     
 
@@ -451,27 +502,34 @@ class SearchHandler(webapp2.RequestHandler) :
                              "sr_show_value" : 'hidden'}
         else :
             template_values={'search_string':search_string}
-            url = 'http://api.duckduckgo.com/?q=%s&format=json'%search_string
+
+            url = 'http://api.duckduckgo.com/?q=%s&format=json'%search_string.replace(' ','%20')
             url_content = urllib2.urlopen(url).read()
             search_json = json.loads(url_content)
             logging.error(search_json)
-            primary_results = return_primary_results(search_json)
+            try :
+                primary_results = return_primary_results(search_json)
+            except :
+                primary_results = {}
+
             news_results = return_news_results(search_string , user_ip)
             top_results = return_top_results(search_string , user_ip)
             web_results = return_web_results(search_string , user_ip)
             image_results = return_image_results(search_string , user_ip)
             thored_results = return_thored_results(search_string , user_ip)
+            video_results = return_video_resutls(search_string, user_ip)
             template_values = dict(template_values.items() + 
                                    primary_results.items() + 
                                    news_results.items() +
                                    top_results.items() +
                                    web_results.items()  +
                                    image_results.items() +
-                                   thored_results.items()
+                                   thored_results.items() +
+                                   video_results.items()
                                    )
 
         template_values['search_string'] = search_string
-        self.response.out.write(ret_template('search.html').render(template_values))  
+        self.response.out.write(ret_template('test.html').render(template_values))  
 
 class ShareHandler(webapp2.RequestHandler) :
     def get(self) :
@@ -496,23 +554,30 @@ class TestHandler(webapp2.RequestHandler):
                              "sr_show_value" : 'hidden'}
         else :
             template_values={'search_string':search_string}
-            url = 'http://api.duckduckgo.com/?q=%s&format=json'%search_string
+
+            url = 'http://api.duckduckgo.com/?q=%s&format=json'%search_string.replace(' ','%20')
             url_content = urllib2.urlopen(url).read()
             search_json = json.loads(url_content)
             logging.error(search_json)
-            primary_results = return_primary_results(search_json)
+            try :
+                primary_results = return_primary_results(search_json)
+            except :
+                primary_results = {}
+
             news_results = return_news_results(search_string , user_ip)
             top_results = return_top_results(search_string , user_ip)
             web_results = return_web_results(search_string , user_ip)
             image_results = return_image_results(search_string , user_ip)
             thored_results = return_thored_results(search_string , user_ip)
+            video_results = return_video_resutls(search_string, user_ip)
             template_values = dict(template_values.items() + 
                                    primary_results.items() + 
                                    news_results.items() +
                                    top_results.items() +
                                    web_results.items()  +
                                    image_results.items() +
-                                   thored_results.items()
+                                   thored_results.items() +
+                                   video_results.items()
                                    )
 
         template_values['search_string'] = search_string

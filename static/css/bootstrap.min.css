@@ -36,6 +36,7 @@ color:#fff;}
     color:#fcf9f9;
 
  }
+
 #search >a:hover{
     background-color:#ddd;
     color:#050505;
@@ -80,6 +81,9 @@ body { padding-top: 70px;
     border-radius: 8px;
     float: none;
 }   
+#search-button {
+	margin-top: 0.4em;
+}
 
 .comment-text {
    word-wrap: break-word;
