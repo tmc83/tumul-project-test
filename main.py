@@ -390,7 +390,7 @@ class SignupHandler(webapp2.RequestHandler):
                             'email': '',
                             'emailerror':''
                           }        
-        self.response.out.write(ret_template('signup.html').render(template_values))
+        self.response.out.write(ret_template('sign.html').render(template_values))
 
     def post(self) :
         name=self.request.get('username')
@@ -423,7 +423,7 @@ class SignupHandler(webapp2.RequestHandler):
                                 'email': email,
                                 'emailerror':emailerror
                               }     
-            self.response.out.write(ret_template('signup.html').render(template_values))   
+            self.response.out.write(ret_template('sign.html').render(template_values))   
         
         else :
 
@@ -441,7 +441,7 @@ class LoginHandler(webapp2.RequestHandler):
                             'error':''
                           }          
 
-        self.response.out.write(ret_template('log.html').render(template_values)) 
+        self.response.out.write(ret_template('login.html').render(template_values)) 
         
     def post(self):
         username = self.request.get('username')
@@ -464,7 +464,7 @@ class LoginHandler(webapp2.RequestHandler):
                                'error': error
                                }          
 
-        self.response.out.write(ret_template('log.html').render(template_values))   
+        self.response.out.write(ret_template('login.html').render(template_values))   
 
 class LogoutHandler(webapp2.RequestHandler) :
     def get(self):
@@ -581,9 +581,14 @@ class TestHandler(webapp2.RequestHandler):
                                    )
 
         template_values['search_string'] = search_string
-        self.response.out.write(ret_template('test.html').render(template_values))            
-        
+        self.response.out.write(ret_template('test.html').render(template_values)) 
 
+class DownloadHandler( webapp2.RequestHandler) :
+    def get(self) :
+        pass
+
+    def post(self) :
+        pass    
 
 app = webapp2.WSGIApplication([('/blog', BlogPage),
                                ('/blog'+'.json', BlogPageJsonHandler),
@@ -598,4 +603,5 @@ app = webapp2.WSGIApplication([('/blog', BlogPage),
                                ('/logout',LogoutHandler),
                                ('/welcome',WelcomeHandler),
                                ('/flush',FlushHandler),
-                               ('/test',TestHandler)], debug=True)        
+                               ('/test',TestHandler),
+                               ('/download', DownloadHandler)], debug=True)        

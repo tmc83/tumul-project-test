@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Login</title>
+    <title>Signup</title>
     <style type="text/css">
       .label {text-align: center}
       .error {color: red}
@@ -41,7 +41,7 @@
 </div>
 
       <div class="container-fluid text-center" >
-          <h1>Login<h2>
+          <h1>Signup<h2>
       </div>
       <hr/>
     </header>
@@ -57,18 +57,29 @@
                   <div class="col-sm-4">
                     <input type="user" class="form-control" id="inputEmail3" placeholder="Username .." name="username" value="{{name}}">
                   </div>
-                  
+                  <label class="col-sm-4 error">{{usererror}}</label>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
                   <div class="col-sm-4">
                     <input type="password" class="form-control" id="inputPassword3" placeholder="Password .." name="password" value="{{password}}">
-                  </div>                                    
+                  </div>
+                  <label class="col-sm-4 error">{{passworderror}}</label>                  
                 </div>  
-                <div class="col-sm-offset-5 col-sm-6 text-center">
-                  <label class="col-sm-4 error">{{error}}</label>
-                </div>         
-                         
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Verify Password</label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Verfiy Password .." name="verify" value="{{verify}}">
+                  </div>
+                  <label class="col-sm-4 error">{{verifyerror}}</label>
+                </div>                 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-4 control-label">Email (optional)</label>
+                  <div class="col-sm-4">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email .." name="email" value="{{email}}">
+                  </div> 
+                  <label class="col-sm-4 error">{{emailerror}}</label>
+                </div>                 
                 <div class="form-group">
                   <div class="col-sm-offset-4 col-sm-4">
                     <button type="submit" class="btn btn-primary btn-block">Sign up</button>
@@ -80,35 +91,13 @@
       </div>
       <hr/>   
       <div class="container-fluid text-center">
-        <h3><p>No Account Yet?</p></h3>
-
-         <h4><muted><a href="/signup">Sign up</a> today.</muted></h4>
+        <h3><p>Have an Account?</p></h3>
+        <h4><muted>If you already have a password, please <a href="/login">sign in</a>.</muted></h4>
         
       </div>        
       </div>
     </section>
 
-    <!--<h2>Login</h2>
-
-    <form method="post">
-      <table>
-        <tr>
-          <td class="label">
-            Username
-          </td>
-          <td>
-            <input type="text" name="username" value="{{username}}">
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Password
-          </td>
-          <td>
-            <input type="password" name="password" value="{{password}}">
- bmit">
-    </form> -->
 <!-- javascript -->
   <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>

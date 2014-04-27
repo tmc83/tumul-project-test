@@ -99,6 +99,19 @@ body { padding-top: 70px;
    -moz-hyphens: auto;
         hyphens: auto;
 }
+
+#login-container{
+	background-color: fff;
+
+}
+
+.line-right {
+    border-right: 1px solid #D9D9D9;
+}
+.line-right {
+  margin-right: -1px;
+  border-right: 1px solid black;
+}
      /*
 .navbar-default .navbar-toggle .icon-bar{
 	background-color :#0088cc ;
