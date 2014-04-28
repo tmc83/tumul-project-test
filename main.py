@@ -11,7 +11,7 @@ import datetime
 import time
 import urllib2
 import HTMLParser
-
+import pafy
 
 
 USER_RE = re.compile("^[a-zA-Z0-9_-]{3,20}$")
@@ -281,7 +281,7 @@ def return_video_resutls(search_string , user_ip) :
     #logging.error(image_json)
     video_results = [] 
     for e in video_json["responseData"]["results"] :
-        video_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : "//www.youtube.com/embed/"+re.findall( r'v\=([\-\w]+)', e["url"] )[0] })
+        video_results.append({"title":html_parser.unescape(e["titleNoFormatting"]) ,"url" : "//www.youtube.com/embed/"+re.findall( r'v\=([\-\w]+)', e["url"] )[0] , 'vid' : re.findall( r'v\=([\-\w]+)', e["url"] )[0] ,'source' : e["url"]})
         logging.error(e["url"])       
         logging.error( "//www.youtube.com/embed/"+re.findall( r'v\=([\-\w]+)', e["url"] )[0])  
 
@@ -585,7 +585,17 @@ class TestHandler(webapp2.RequestHandler):
 
 class DownloadHandler( webapp2.RequestHandler) :
     def get(self) :
-        pass
+        vid = self.request.get('vid')
+        logging.error(vid)
+        url = "http://www.youtube.com/watch?v=%s"%vid
+        video  = pafy.new(url)
+        streams = video.allstreams        
+        template_values = { "url" : url , 
+                            "vid" : vid ,
+                            "video" : video,                            
+                            "streams" : streams
+                            }                             
+        self.response.out.write(ret_template('downloader.html').render(template_values))        
 
     def post(self) :
         pass    

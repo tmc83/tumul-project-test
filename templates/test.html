@@ -449,7 +449,14 @@
 						<div>
 							<iframe width="640" height="360" src="{{result["url"]}}" frameborder="0" allowfullscreen></iframe>
 						</div>
-					
+						<div class="row">
+							<div class="col-sm-5">
+								<a href="{{result["source"]}}" class="btn btn-info">Source</a>
+							</div>
+							<div class="col-sm-offset-2 col-sm-5" >
+								<a href="/download?vid={{result["vid"]}}" class="btn btn-danger">Download</a>
+							</div>	
+						</div>					
 						<hr/>
 										
 			   	 	{% endfor %}	
