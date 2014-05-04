@@ -61,19 +61,138 @@ color:#fff;}
     background-color:#0088cc;
     color:#fcf9f9;
 
+
  }   
+
+ @font-face {
+    font-family: 'parisienneregular';
+    src: url('parisienne-regular-webfont.eot');
+    src: url('parisienne-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('parisienne-regular-webfont.woff') format('woff'),
+         url('parisienne-regular-webfont.ttf') format('truetype'),
+         url('parisienne-regular-webfont.svg#parisienneregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'know_your_productregular';
+    src: url('know_your_product-webfont.eot');
+    src: url('know_your_product-webfont.eot?#iefix') format('embedded-opentype'),
+         url('know_your_product-webfont.woff') format('woff'),
+         url('know_your_product-webfont.ttf') format('truetype'),
+         url('know_your_product-webfont.svg#know_your_productregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
  #thore{
+font-family: 'parisienneregular';
 font-size: 8em;
 letter-spacing: .1em;
 font-weight: 650;
 
 
- }       
-body { padding-top: 70px; 
-	/*	background: url('/static/images/paper.jpg')  no-repeat center top;*/
+ } 
+
+
+#sphere{
+
+font-size: 8em;font: url(/static/font/Parisienne-Regular.ttf)
+
+font-weight: 650;
+
+
+ }  
+ #shaloc{
+font-family: 'know_your_productregular';
+font-size: 8em;
+font-weight: 650;
+
+ }    
+
+
+body { padding-top: 70px; 		
 		
-}   
+} 
+
+#blog-body{
+	background: url('/static/images/bg3.jpg') center top fixed ;
+}  
     
+#body-404{
+	background: url('/static/images/paper.jpg') center  fixed no-repeat;
+}  
+#form-body{
+	background: url('/static/images/bg3.jpg') center top fixed ;
+}  
+#perma-body{
+	background: url('/static/images/bg3.jpg') center top fixed ;
+}
+#error-404{
+font-family: 'parisienneregular';
+font-size: 8em;
+letter-spacing: .1em;
+font-weight: 650;
+color : #6a6a6a;
+}
+
+#error-404{
+font-family: 'parisienneregular';
+font-size: 8em;
+letter-spacing: .1em;
+font-weight: 650;
+color : #6a6a6a;
+}
+
+#error-bottom-404{
+font-family: 'parisienneregular';
+font-size: 6em;
+font-weight: 650;
+position: absolute; 
+color : #414040;
+bottom : .2em ;
+right : .5em;
+
+}
+
+#icon-404{
+font-size: 15em;
+letter-spacing: .1em;
+font-weight: 800;
+color : #6a6a6a;
+}
+
+#error-500{
+font-family: 'parisienneregular';
+font-size: 8em;
+letter-spacing: .1em;
+font-weight: 650;
+color : #6a6a6a;
+}
+
+#error-bottom-500{
+font-family: 'parisienneregular';
+font-size: 6em;
+font-weight: 650;
+position: absolute; 
+color : #414040;
+bottom : .2em ;
+right : .5em;
+
+}
+
+#icon-500{
+font-size: 15em;
+letter-spacing: .1em;
+font-weight: 800;
+color : #6a6a6a;
+}
+
 .btn-xl {
     margin-top: 10px;
     padding: 5px 170px;
@@ -112,6 +231,154 @@ body { padding-top: 70px;
   margin-right: -1px;
   border-right: 1px solid black;
 }
+    
+    
+#primary-well{
+    /*background-color: rgba(245, 245, 245, 0.4);*/
+    box-shadow:0px 0px 15px #969696;
+}
+
+#top-well{
+    /*background-color: rgba(245, 245, 245, 0.4);*/
+    box-shadow:0px 0px 15px #969696;
+}
+    
+#news-well{
+    /*background-color: rgba(245, 245, 245, 0.4);*/
+    box-shadow:0px 0px 15px #969696;
+}
+    
+#web-well{
+    /*background-color: rgba(245, 245, 245, 0.4);*/
+    box-shadow:0px 0px 15px #969696;
+}
+    
+#thored-well{
+    /*background-color: rgba(245, 245, 245, 0.4);*/
+    box-shadow:0px 0px 15px #969696;
+}
+    
+#media-well{
+    background-color: rgba(221, 212, 212, 0.4) ;
+    box-shadow:0px 0px 15px #969696;
+}    
+
+#post-well{
+	background-color: rgba(131, 96, 0, 0.4) ;
+    border: none ;
+	box-shadow:0px 0px 15px #725400;
+}
+
+.post-heading{
+	color :#3c3327;
+    font-size: 1.5em;
+    /*letter-spacing: .1em;*/    
+    font-weight: 500;
+    text-decoration: none;
+    /*border-bottom: 3px solid #433c32;*/
+}
+.post-heading:hover{
+	color :#1a1611;
+    font-size: 1.5em;
+    /*letter-spacing: .1em;*/    
+    font-weight: 500;
+    /*text-decoration: none;*/
+    
+    /*border-bottom: 3px solid #2f281e;*/
+}
+
+.post-divider {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+.post-divider:after {
+    content: "§";
+    display: inline-block;
+    position: relative; 
+    top: -0.7em;  
+    font-size: 1.5em;
+    padding: 0 0.25em;
+}
+
+.post-textbox{
+border : none;
+margin-top: .5em;
+margin-bottom: .5em;
+border-radius : 0.25em;
+box-shadow:0px 0px 6px #725400;
+background-color: rgba(131, 96, 0, 0.4) ;
+}
+
+.post-textarea{
+border : none;
+margin-top: .5em;
+border-radius : 0.25em;
+box-shadow:0px 0px 8px #725400;
+background-color: rgba(131, 96, 0, 0.4) ;
+}
+
+#post-submit{
+background-color:#725400;
+border :none ;
+margin-bottom:  .5em;
+
+}
+
+#search-icon{;
+letter-spacing: -.3em;
+vertical-align: text-bottom;
+}
+
+#sphere-icon{
+
+vertical-align: text-bottom;
+}
+#shaloc-icon{
+vertical-align: text-bottom;
+}
+.shaloc-wells{
+	border : none;
+    box-shadow:0px 0px 8px #725400;
+	background-color: rgba(73, 37, 87, 0.4);
+}
+/* Cloud */
+		
+hr.shaloc-style {
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px black;
+}
+hr.shaloc-style:after {  /* Not really supposed to work, but does */
+    content: "\00a0";  /* Prevent margin collapse */
+}
+
+
+
+/* Flaired edges, by Tomas Theunissen 
+		
+hr.style-seven {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+hr.style-seven:before { /* Not really supposed to work, but does *
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;    
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+
      /*
 .navbar-default .navbar-toggle .icon-bar{
 	background-color :#0088cc ;

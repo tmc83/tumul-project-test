@@ -80,7 +80,7 @@ def set_posts(subject,content) :
     return post
 
 def age_str(SAVED_TIME) :    
-    return "queried %s seconds ago"%(datetime.datetime.now().utcnow() - SAVED_TIME).total_seconds()
+    return "queried %s seconds ago"%int((datetime.datetime.now().utcnow() - SAVED_TIME).total_seconds())
 
    
 jinja_environment = jinja2.Environment(autoescape=True,
@@ -302,8 +302,7 @@ class Users(db.Model):
 
 
 class BlogPage(webapp2.RequestHandler):
-    def get(self):
-        
+    def get(self):        
         posts = get_posts()[0]
         SAVED_TIME = get_posts()[1]
         template_values = {
@@ -318,6 +317,7 @@ class BlogPageJsonHandler(BlogPage):
         self.response.content_type = 'application/json; charset=utf-8'
         posts = get_posts()
         post_list = []
+
         for post in posts :
             post_list.append({"subject":post.subject,"content":post.content,"created":str(post.post_date)})
         j = json.dumps(post_list)    
@@ -600,6 +600,16 @@ class DownloadHandler( webapp2.RequestHandler) :
     def post(self) :
         pass    
 
+def handle_404(request, response, exception):
+    logging.exception(exception)
+    response.write(ret_template('404.html').render({}))
+    response.set_status(404)
+
+def handle_500(request, response, exception):
+    logging.exception(exception)
+    response.write(ret_template('500.html').render({}))
+    response.set_status(500)        
+
 app = webapp2.WSGIApplication([('/blog', BlogPage),
                                ('/blog'+'.json', BlogPageJsonHandler),
                                ('/search',SearchHandler),
@@ -614,4 +624,7 @@ app = webapp2.WSGIApplication([('/blog', BlogPage),
                                ('/welcome',WelcomeHandler),
                                ('/flush',FlushHandler),
                                ('/test',TestHandler),
-                               ('/download', DownloadHandler)], debug=True)        
+                               ('/download', DownloadHandler)], debug=True) 
+
+app.error_handlers[404] = handle_404
+app.error_handlers[500] = handle_500                                      

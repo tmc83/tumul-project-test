@@ -37,9 +37,59 @@
      </nav>
    </div>
   </header> 
+  <article>
+    <div class="container-fluid">
+      <h1 id="shaloc" class="text-center" >
+        
+        SHAL<span class="glyphicon glyphicon-map-marker" id="shaloc-icon"></span>C
+      </h1>
+    </div>
+ 
+  </article>
+
+  <hr class="shaloc-style" />
+  <br>
+ <section>
+   <div class="container-fluid">
+    <div class="row">
+      <article>
+      <div class="col-sm-4">
+        <div class="well" class="shaloc-wells">
+          <div class="text-center"
+          ><h3>Feeds</h3>
+          <hr/>
+        </div>   
+        </div>        
+      </div>
+      </article>
+      <article>
+      <div class="col-sm-4">
+        <div class="well" class="shaloc-wells">
+          <div class="text-center"
+          ><h3>Conversations</h3>
+          <hr/>
+        </div>                    
+        </div>         
+      </div>
+      </article>
+      <article>
+      <div class="col-sm-4">
+        <div class="well" class="shaloc-wells">
+          <div class="text-center"
+          ><h3>Live</h3>
+          <hr/>
+        </div>                   
+        </div>         
+      </div>
+      </article>
+    </div>     
+   </div>
+ </section>
   <section>
+<div class="text-center">
     <p id="demo">Click the button to get your position:</p>
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()" class="btn btn-warning">SHAZAM</button>
+<hr/>
 <div id="mapholder"></div>
 <script>
 var x=document.getElementById("demo");
@@ -80,6 +130,7 @@ function showError(error)
     }
   }
 </script>
+</div>
   </section>
 
 <!-- javascript -->

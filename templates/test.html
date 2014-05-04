@@ -9,6 +9,7 @@
     <!-- Bootstrap 
     <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">-->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="/static/js/respond.js"></script>
 </head>
 <body>
@@ -109,13 +110,13 @@
 			  	<div class="form-group">
 				    <label class="col-sm-1 control-label"></label>
 				    <div class="col-sm-10 ">
-				      <input type="search" class="form-control input-lg" placeholder="Search.." name="search_string" autofocus>
+				      <input type="search" class="form-control input-lg" placeholder="Search.." name="search_string" autofocus id="search">
 				    </div>
 				</div>
 				<div class="form-group">
 				 	<label class="col-sm-1 control-label " class="text-center"></label>
 				    <div class=" col-sm-offset-2 col-sm-6" class="container-fluid">
-				      <button type="submit" class="btn btn-primary btn-lg btn-block" id="search-button" data-loading-text="Searching" >Search</button>
+				      <button type="submit" class="btn btn-primary btn-lg btn-block" id="search-button" data-loading-text="Searching" >Search </button>
 				    </div>
 			  	</div>			 
 			</form>
@@ -126,7 +127,7 @@
 	<section>
 		<div class="container-fluid" {{tr_show_value}}>
 			<hr/>
-			<div class="well" >				
+			<div class="well" id="primary-well">				
 				<h2 class="text-center" >
 					<p>{{search_string}}</p>
 				</h2>			
@@ -239,7 +240,7 @@
 				<div class="row">
 					<article>
 						<div class="col-sm-6" >
-							<div class="well">
+							<div class="well" id="top-well">
 								<h3 class="text-center">
 								Top Results
 								</h3>
@@ -266,7 +267,7 @@
 	
 					<article>
 						<div class="col-sm-6" >
-							<div class="well">
+							<div class="well" id="news-well">
 								<h3 class="text-center">
 								News Results
 								<hr/>
@@ -346,7 +347,7 @@
 					</article>
 					<article>
 						<div class="col-sm-6" >
-							<div class="well">
+							<div class="well" id="web-well">
 								<h3 class="text-center">
 								Web Results
 								<hr/>
@@ -410,7 +411,7 @@
 					</article>
 					<article>
 						<div class="col-sm-6" >
-							<div class="well">
+							<div class="well" id="thored-well">
 								<h3 class="text-center">
 								Th0Red Results
 								<hr/>
@@ -435,7 +436,7 @@
 			</div>
 			<hr/ {{tr_show_value}}>
 			<div class="container-fluid"  {{mr_show_value}}>
-				<div class="well">
+				<div class="well" id="media-well">
 					<article>
 					<h2 class="text-center">
 						Media Results
@@ -467,7 +468,6 @@
 											
 								<hr/>
 								<img src="{{result["url"]}}" alt="" class="img-responsive center-block" >	
-
 								
 										
 			   	 	{% endfor %}	
@@ -485,6 +485,7 @@
 <!-- javascript -->
 	<script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
 $("#search-button").click(function() {
     var $btn = $(this);
@@ -511,7 +512,6 @@ $("modal-search-button").click(function() {
     });
 
 
-    </script
-
+    </script>
 </body>
 </html>

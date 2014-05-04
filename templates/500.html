@@ -10,7 +10,8 @@
     <script src="/static/js/respond.js"></script>    
   </head>
 
-  <body>
+  <body id="body-404">
+
     <header>
     <div class="row">
      <nav class="navbar navbar-inverse navbar-fixed-top" name="Navigation Bar">
@@ -33,9 +34,20 @@
               </div>
      </nav>
   </div>
-    </header>    
+    </header> 
+
     <div class="container-fluid">
-      <h2>Welcome, {{username}}</h2>
+        <p id="error-500" >500</p>  
+    </div>   
+    <div class="container-fluid">
+      <div class="text-center">
+        <span class="glyphicon glyphicon-ban-circle" id="icon-500"></span>       
+      </div>      
+    </div>
+    <div class="container-fluid">
+      <div class="pull-right" id="error-bottom-500">
+      <h1>SERVER ERROR : Its Not You, Its us !</h1>
+      </div>
     </div>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>       

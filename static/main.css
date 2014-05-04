@@ -101,7 +101,7 @@ input[type=search] {
 */
 textarea {
   width: 500px;
-  height: 400px;
+  height: 300px;
   font-size: 17px;
   font-family: monospace;
 }
@@ -131,7 +131,7 @@ input[type=submit] {
 .post-heading {
    
 
-    border-bottom: 3px solid #666;
+    /*border-bottom: 3px solid #666;*/
 
 }
 
@@ -157,14 +157,16 @@ input[type=submit] {
 
 .post-content {
     margin-top: 5px;
+   /* border-top: 3px solid #000;*/
+    padding-top: 5px
+
    
 
 }
 
 .age {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+    position: absolute;    
+    right: 1em;
     color: gray;
     font-size: 12px;
 }

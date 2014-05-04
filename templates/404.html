@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Welcome</title>
+    <title>Error 404</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="/static/main.css" />    
        <!-- Bootstrap -->
@@ -10,7 +10,8 @@
     <script src="/static/js/respond.js"></script>    
   </head>
 
-  <body>
+  <body id="body-404">
+
     <header>
     <div class="row">
      <nav class="navbar navbar-inverse navbar-fixed-top" name="Navigation Bar">
@@ -33,9 +34,20 @@
               </div>
      </nav>
   </div>
-    </header>    
+    </header> 
+
     <div class="container-fluid">
-      <h2>Welcome, {{username}}</h2>
+        <p id="error-404" >404</p>  
+    </div>   
+    <div class="container-fluid">
+      <div class="text-center">
+        <span class="glyphicon glyphicon-ban-circle" id="icon-404"></span>       
+      </div>      
+    </div>
+    <div class="container-fluid">
+      <div class="pull-right" id="error-bottom-404">
+      <h1>Oops! This Page does not exist !</h1>
+      </div>
     </div>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>       
