@@ -315,7 +315,7 @@ class BlogPage(webapp2.RequestHandler):
 class BlogPageJsonHandler(BlogPage):
     def  get(self):        
         self.response.content_type = 'application/json; charset=utf-8'
-        posts = get_posts()
+        posts = get_posts()[0]
         post_list = []
 
         for post in posts :
@@ -617,7 +617,7 @@ app = webapp2.WSGIApplication([('/blog', BlogPage),
                                ('/share',ShareHandler),                            
                                ('/blog/newpost',FormHandler),
                                ('/blog/(\d+)',ThanksHandler),
-                               ('/(\d+)'+'.json',ThanksJsonHandler),
+                               ('/blog/(\d+)'+'.json',ThanksJsonHandler),
                                ('/signup',SignupHandler),
                                ('/login',LoginHandler),
                                ('/logout',LogoutHandler),

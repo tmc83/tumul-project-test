@@ -66,11 +66,11 @@ color:#fff;}
 
  @font-face {
     font-family: 'parisienneregular';
-    src: url('parisienne-regular-webfont.eot');
-    src: url('parisienne-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('parisienne-regular-webfont.woff') format('woff'),
-         url('parisienne-regular-webfont.ttf') format('truetype'),
-         url('parisienne-regular-webfont.svg#parisienneregular') format('svg');
+    src: url('/static/fonts/parsienne/parisienne-regular-webfont.eot');
+    src: url('/static/fonts/parsienne/parisienne-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/parsienne/parisienne-regular-webfont.woff') format('woff'),
+         url('/static/fonts/parsienne/parisienne-regular-webfont.ttf') format('truetype'),
+         url('/static/fonts/parsienne/parisienne-regular-webfont.svg#parisienneregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -78,11 +78,11 @@ color:#fff;}
 
 @font-face {
     font-family: 'know_your_productregular';
-    src: url('know_your_product-webfont.eot');
-    src: url('know_your_product-webfont.eot?#iefix') format('embedded-opentype'),
-         url('know_your_product-webfont.woff') format('woff'),
-         url('know_your_product-webfont.ttf') format('truetype'),
-         url('know_your_product-webfont.svg#know_your_productregular') format('svg');
+    src: url('/static/fonts/knowyourproduct_regular/know_your_product-webfont.eot');
+    src: url('/static/fonts/knowyourproduct_regular/know_your_product-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/knowyourproduct_regular/know_your_product-webfont.woff') format('woff'),
+         url('/static/fonts/knowyourproduct_regular/know_your_product-webfont.ttf') format('truetype'),
+         url('/static/fonts/knowyourproduct_regular/know_your_product-webfont.svg#know_your_productregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -91,27 +91,29 @@ color:#fff;}
 
 
  #thore{
-font-family: 'parisienneregular';
-font-size: 8em;
-letter-spacing: .1em;
+font-family: 'glyphicons-halflings-regular';
+font-size: 9em;
+letter-spacing: .05em;
 font-weight: 650;
-
 
  } 
 
 
 #sphere{
 
-font-size: 8em;font: url(/static/font/Parisienne-Regular.ttf)
+font-size: 8em;font: url(/static/font/Parisienne-Regular.ttf);
+margin-top: .15em;
 
 font-weight: 650;
 
 
  }  
  #shaloc{
-font-family: 'know_your_productregular';
+font-family: 'monospace';
 font-size: 8em;
 font-weight: 650;
+margin-top: .15em;
+font-style: italic ;
 
  }    
 
@@ -176,7 +178,7 @@ color : #6a6a6a;
 }
 
 #error-bottom-500{
-font-family: 'parisienneregular';
+font-family: 'glyphicons-halflings-regular';
 font-size: 6em;
 font-weight: 650;
 position: absolute; 
@@ -319,6 +321,7 @@ margin-top: .5em;
 border-radius : 0.25em;
 box-shadow:0px 0px 8px #725400;
 background-color: rgba(131, 96, 0, 0.4) ;
+font-family: 'monospace';
 }
 
 #post-submit{
@@ -339,6 +342,9 @@ vertical-align: text-bottom;
 }
 #shaloc-icon{
 vertical-align: text-bottom;
+font-style: italic;
+margin-left : -.25em;
+margin-right: .05em;
 }
 .shaloc-wells{
 	border : none;

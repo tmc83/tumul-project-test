@@ -1,5 +1,5 @@
 application: tumul-project-test
-version: 3
+version: 4
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -8,10 +8,88 @@ handlers:
 
 - url: /static
   static_dir: static 
-  
+
+- url: /static/images
+  static_dir: static/images
+
 - url: /.*
   script: main.app
- 
+
+- url: /static/fonts/parsienne/(.*\.woff)
+  static_files: static/fonts/parsienne/\1
+  upload: static/fonts/parsienne/(.*\.woff)  
+  mime_type: application/font-woff
+
+- url: /static/fonts/parsienne/(.*\.svg)
+  static_files: static/fonts/parsienne/\1
+  upload: static/fonts/parsienne/(.*\.svg)  
+  mime_type: image/svg+xml
+
+- url: /static/fonts/parsienne/(.*\.eot)
+  static_files: static/fonts/parsienne/\1
+  upload: static/fonts/parsienne/(.*\.eot)  
+  mime_type: application/vnd.ms-fontobject
+
+- url: /static/fonts/parsienne/(.*\.ttf)
+  static_files: static/fonts/parsienne/\1
+  upload: static/fonts/parsienne/(.*\.ttf)  
+  mime_type: application/x-font-ttf
+
+- url: /static/fonts/parsienne/(.*\.otf)
+  static_files: static/fonts/parsienne/\1
+  upload: static/fonts/parsienne/(.*\.otf)  
+  mime_type: application/x-font-otf
+
+- url: /static/fonts/(.*\.woff)
+  static_files: static/fonts/\1
+  upload: static/fonts/(.*\.woff)  
+  mime_type: application/font-woff
+
+- url: /static/fonts/(.*\.svg)
+  static_files: static/fonts/\1
+  upload: static/fonts/(.*\.svg)  
+  mime_type: image/svg+xml
+
+- url: /static/fonts/(.*\.eot)
+  static_files: static/fonts/\1
+  upload: static/fonts/(.*\.eot)  
+  mime_type: application/vnd.ms-fontobject
+
+- url: /static/fonts/(.*\.ttf)
+  static_files: static/fonts/\1
+  upload: static/fonts/(.*\.ttf)  
+  mime_type: application/x-font-ttf
+
+- url: /static/fonts/(.*\.otf)
+  static_files: static/fonts/\1
+  upload: static/fonts/(.*\.otf)  
+  mime_type: application/x-font-otf
+
+- url: /static/fonts/knowyourproduct_regular/(.*\.woff)
+  static_files: static/fonts/knowyourproduct_regular/\1
+  upload: static/fonts/knowyourproduct_regular/(.*\.woff)  
+  mime_type: application/font-woff
+
+- url: /static/fonts/knowyourproduct_regular/(.*\.svg)
+  static_files: static/fonts/knowyourproduct_regular/\1
+  upload: static/fonts/knowyourproduct_regular/(.*\.svg)  
+  mime_type: image/svg+xml
+
+- url: /static/fonts/knowyourproduct_regular/(.*\.eot)
+  static_files: static/fonts/knowyourproduct_regular/\1
+  upload: static/fonts/knowyourproduct_regular/(.*\.eot)  
+  mime_type: application/vnd.ms-fontobject
+
+- url: /static/fonts/knowyourproduct_regular/(.*\.ttf)
+  static_files: static/fonts/knowyourproduct_regular/\1
+  upload: static/fonts/knowyourproduct_regular/(.*\.ttf)  
+  mime_type: application/x-font-ttf
+
+- url: /static/fonts/knowyourproduct_regular/(.*\.otf)
+  static_files: static/fonts/knowyourproduct_regular/\1
+  upload: static/fonts/knowyourproduct_regular/(.*\.otf)  
+  mime_type: application/x-font-otf
+
 libraries:
 - name: webapp2
   version: latest
