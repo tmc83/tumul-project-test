@@ -1,0 +1,22 @@
+The project 'TH0RE-SPHERE-SHALOC', we yearn to develop is a software as a service (SaaS) that embraces within itself the three primary driving factors behind the mordern WWW or the Web 3.0 as many call it :-
+1) Search Engine
+2) Blogging Platform
+3) Social Networking Service
+Along with the three aforementioned primary features, the project also employs the following core concepts and practices that dwell within it :-
+- Implementation of Cryptographic Algorithms and Systems
+- Cloud Computing
+- AI and Machine Learning
+
+The entire project is developed in a state of the art platform using python at its core and Google App Engine as the PaaS on which this SaaS resides. Also, the whole project environment is powered by Ubuntu Linux Distro and uses some avant-garde technologies including Memcached, Google Datastore , Jinja 2, pafy and much more .
+
+The three paramount components as the project title states are :-
+
+1) Th0RE - the search engine , ( acr. for Thought Recoginition ), which is the flagship constituent of the project that provides the users with the search results for their queries; categorized into - (i) Primary Results (ii) Secondary Results (a) Top Results (b) News Results (c) Web Results (d) Th0Red Results (e)Media Results - Video Results - Image Results . Along with the Video Results from youtube, ability to download the video in more than 10 formats and resolutions is also provided.
+
+(2) Sphere - the blogging platform , is the deuteragonist of this web application that provides the user with a straight-forward and hassle-free environment to blog and post articles.
+
+(3) SHALOC - the social networking service - (acr. for Share Location), which is the third pillar of this SaaS , allowing social interactions amongst users on the basis of location oriented stories and media via geo-tagging.
+
+The Project is hosted at "tumul-project-test.appspot.com".
+
+The Source Code Repo is hosted at "github.com/tmc/tumul-project-test".

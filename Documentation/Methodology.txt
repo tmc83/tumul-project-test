@@ -1,0 +1,27 @@
+The primary software development methodology used as the development model in this project is Agile Development Model based on iterative and incremental development with FDD i.e Agile with Feature Driven Development . It is an iterative enhancement model that emphasizes primarily on features and repetetive testing of these features .
+
+Agile Manifesto :-
+
+Individuals and interactions over processes and tools
+Working software over comprehensive documentation
+Customer collaboration over contract negotiation
+Responding to change over following a plan
+
+That is, while there is value in the items on
+the right, we value the items on the left more.
+
+
+The meanings of the manifesto items on the left within the agile software development context are:
+
+Individuals and interactions – in agile development, self-organization and motivation are important, as are interactions like co-location and pair programming.
+Working software – working software will be more useful and welcome than just presenting documents to clients in meetings.
+Customer collaboration – requirements cannot be fully collected at the beginning of the software development cycle, therefore continuous customer or stakeholder involvement is very important.
+Responding to change – agile development is focused on quick responses to change and continuous development.
+
+Overview :-
+
+-Iterative, incremental and evolutionary
+-Very short feedback loop and adaptation cycle
+-Quality focus
+
+
