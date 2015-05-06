@@ -227,21 +227,21 @@ def return_web_results(search_string, user_ip) :
             more_web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["url"] })
 
 
-    url = urllib2.urlopen("http://188.40.64.7:8092/yacysearch.json?query=%s"%(search_string)).read()
+    #url = urllib2.urlopen("http://188.40.64.7:8092/yacysearch.json?query=%s"%(search_string)).read()
    # json_response = unirest.get("https://faroo-faroo-web-search.p.mashape.com/api?q=lobo",
   
  # headers={
    # "X-Mashape-Authorization": "ArSWXeNxgohO7uPTFIGzNO79TNjPyYNW"
   #}
 #);
-    web_json = json.loads(url)
+    #web_json = json.loads(url)
 
-    for e in web_json["channels"][0]["items"] :
-        if len(web_results) < 4 :       
-            web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
+    #for e in web_json["channels"][0]["items"] :
+     #   if len(web_results) < 4 :       
+      #      web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
         
-        else :
-            more_web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
+       # else :
+        #    more_web_results.append({"title":html_parser.unescape(e["title"]) ,"url" : e["link"] })
 
     #logging.error(web_results)   
 
